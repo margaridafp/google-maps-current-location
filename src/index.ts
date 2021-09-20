@@ -42,11 +42,3 @@ export default function addLocationMarker(
     }
   });
 }
-
-declare global {
-  interface Window {
-    addCurrentLocation: (map: google.maps.Map, options?: Options) => void;
-  }
-}
-
-window.addCurrentLocation = addLocationMarker;
