@@ -1,6 +1,6 @@
 {
   "name": "google-maps-current-location",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Google maps current location position and marker",
   "keywords": ["google","maps","current","location","marker"],
   "homepage": "https://github.com/margaridafp/google-maps-current-location#readme",
@@ -17,6 +17,7 @@
   "exports": "./dist/index.modern.js",
   "module": "./dist/index.module.js",
   "unpkg": "./dist/index.umd.js",
+  "types": "./dist/index.d.ts",
   "scripts": {
     "build": "microbundle",
     "dev": "microbundle watch"
