@@ -1,0 +1,22 @@
+{
+    "compilerOptions": {
+      "target": "ESNext",
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
+      "forceConsistentCasingInFileNames": true,
+      "module": "ESNext",
+      "moduleResolution": "node",
+      "noFallthroughCasesInSwitch": true,
+      "noImplicitAny": true,
+      "noImplicitThis": true,
+      "resolveJsonModule": true,
+      "downlevelIteration": true,
+      "skipLibCheck": true,
+      "strict": true,
+      "strictNullChecks": true,
+      "noEmit": true,
+    },
+    "exclude": [
+      "node_modules"
+    ]
+  }

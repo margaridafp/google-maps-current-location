@@ -1,0 +1,52 @@
+{
+    "env": {
+      "browser": true,
+      "es2021": true
+    },
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "google"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 12,
+      "sourceType": "module"
+    },
+    "ignorePatterns": [
+      "**/generated/**/*.[tj]s",
+      "**/build/**/*.[tj]s"
+    ],
+    "plugins": [
+      "@typescript-eslint",
+      "simple-import-sort"
+    ],
+    "rules": {
+      "max-len": [
+        1,
+        120,
+        2,
+        {
+          "ignorePattern": "^import\\s.+\\sfrom\\s.+;$",
+          "ignoreUrls": true
+        }
+      ],
+      "require-jsdoc": [
+        "off"
+      ],
+      "no-multiple-empty-lines": [
+        "error",
+        {
+          "max": 1
+        }
+      ],
+      // Use simple import instead of others
+      "simple-import-sort/imports": "error",
+      "simple-import-sort/exports": "error",
+      "sort-imports": "off",
+      "import/order": "off",
+      "valid-jsdoc": "off",
+      // no-unused-vars doesn't like enums and @typescript-eslint/no-unused-vars is already on
+      "no-unused-vars": "off"
+    }
+  }
