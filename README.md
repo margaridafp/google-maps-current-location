@@ -1,6 +1,10 @@
 # Google Maps Current Location Marker
 
-Add current location marker to your Google Maps. 
+Click on *your location* and display the geographic location of a user or device on a Google map.
+
+<p align="center">
+    <img src="assets/readme/main-example.gif" />
+</p>
 
 - [Usage](#usage)
 - [Props](#props)
@@ -37,6 +41,10 @@ Prop | Description
 
 **buttonStyle**: configures the css and positioning of the button displayed over the map.
 
+<p>
+    <img width="50px" height="50px" src="assets/readme/current-location-button.png" />
+</p>
+
 Prop | Type  | Description | Default
 ---- | ----| ----------- | -------
 `buttonPosition` | google.maps.ControlPosition | Position of button in relation with map. Check [here](https://developers.google.com/maps/documentation/javascript/controls#ControlPositioning) to find out more. | google.maps.ControlPosition.RIGHT_BOTTOM
@@ -52,6 +60,10 @@ Prop | Type  | Description | Default
 
 
 **markerStyle**: configures the css of the marker displayed over the map, on the current location coordinates. To learn more about `google.maps.Marker` click [here](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions).
+
+<p>
+    <img width="100px" height="100px" src="assets/readme/current-location-marker.png" />
+</p>
 
 Prop | Type | Description | Default
 ---- | ----| ----------- | -------
