@@ -26,6 +26,17 @@ import addLocationMarker from 'google-maps-current-location'
 addLocationMarker(map)
 ```
 
+or add it directly to your .html file: 
+
+```html
+  <script src="https://unpkg.com/google-maps-current-location"></script>
+  
+  <script>
+    ...
+    addCurrentLocation(map)
+  </script>
+```
+
 Props
 --------------------------------------------------------------------------------
 
@@ -111,4 +122,38 @@ export default function App() {
     </div>
   );
 }
+```
+
+**Html:**
+
+```html
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <script async
+        src="https://maps.googleapis.com/maps/api/js?key=YOUR-KEY&callback=initMap&libraries=&v=weekly&lng=en"></script>
+    <script src="https://unpkg.com/google-maps-current-location"></script>
+
+    <script>
+      let map;
+
+      function initMap() {
+        map = new google.maps.Map(document.getElementById("map"), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 8,
+            disableDefaultUI: true,
+        });
+
+        addCurrentLocation(map)
+      }
+    </script>
+  </head>
+
+  <body>
+    <div id="map" style="height:500px; width:500px"></div>
+  </body>
+
+</html>
 ```
