@@ -26,7 +26,8 @@
   "types": "./dist/index.d.ts",
   "scripts": {
     "build": "microbundle --name addCurrentLocation",
-    "dev": "microbundle watch"
+    "dev": "microbundle watch",
+    "lint":"eslint --cache ."
   },
   "devDependencies": {
     "@types/googlemaps": "^3.43.3",
