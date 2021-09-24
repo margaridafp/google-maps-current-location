@@ -22,7 +22,7 @@ class CurrentLocation {
   map: google.maps.Map;
   positionCount: number;
   positionOptions: PositionOptions;
-  watchId: number | string;
+  watchId?: number | string;
   watchPositionFn: WatchPositionFnType;
 
   constructor(map: google.maps.Map, options: Options = {}) {
@@ -65,7 +65,7 @@ class CurrentLocation {
     const id = this.watchPositionFn((pos) => {
       this.updatePosition(pos);
     }, (err: GeolocationPositionError) => {
-      throw err;
+      this.setError(err);
     }, this.positionOptions);
 
     if (id instanceof Promise) {
@@ -83,6 +83,17 @@ class CurrentLocation {
     this.locationMarker.update(pos, ++this.positionCount === 1);
     this.controlUI.setEnabled(true);
     this.controlUI.animate(false);
+  }
+
+  /**
+   * When an error occurs during the watchPosition (e.g. PERMISSION_DENIED) an alert is showed,
+   * the watchId is set to undefined (to allow a re-watching) and the ControlUI settings are set to default
+   * */
+  setError(err: GeolocationPositionError): void {
+    this.watchId = undefined;
+    this.controlUI.setEnabled(true);
+    this.controlUI.animate(false);
+    alert(err.message);
   }
 }
 
