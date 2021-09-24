@@ -3,7 +3,7 @@ import LocationMarker from './LocationMarker';
 import {ButtonStyle, MarkerStyle} from './types';
 
 type WatchPositionFnType = (successCallback: PositionCallback,
-  errorCallback?: PositionErrorCallback | null, options?: PositionOptions) => number | Promise<number>
+  errorCallback?: PositionErrorCallback | null, options?: PositionOptions) => number | Promise<number | string>
 
 export type Options = {
   buttonStyle?: ButtonStyle,
@@ -22,7 +22,7 @@ class CurrentLocation {
   map: google.maps.Map;
   positionCount: number;
   positionOptions: PositionOptions;
-  watchId: number;
+  watchId: number | string;
   watchPositionFn: WatchPositionFnType;
 
   constructor(map: google.maps.Map, options: Options = {}) {

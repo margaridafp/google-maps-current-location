@@ -1,6 +1,6 @@
 {
   "name": "google-maps-current-location",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Google maps current location position and marker",
   "keywords": [
     "google",
