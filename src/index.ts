@@ -3,7 +3,7 @@ import LocationMarker from './LocationMarker';
 import {ButtonStyle, MarkerStyle} from './types';
 
 type WatchPositionFnType = (successCallback: PositionCallback,
-  errorCallback?: PositionErrorCallback | null, options?: PositionOptions) => number
+  errorCallback?: PositionErrorCallback | null, options?: PositionOptions) => number | Promise<number>
 
 export type Options = {
   buttonStyle?: ButtonStyle,
@@ -62,11 +62,17 @@ class CurrentLocation {
    * This will be called automatically each time the position changes.
    * */
   startWatchPosition(): void {
-    this.watchId = this.watchPositionFn((pos) => {
+    const id = this.watchPositionFn((pos) => {
       this.updatePosition(pos);
     }, (err: GeolocationPositionError) => {
       throw err;
     }, this.positionOptions);
+
+    if (id instanceof Promise) {
+      id.then((id)=> this.watchId = id);
+    } else {
+      this.watchId = id;
+    }
   }
 
   /**
