@@ -1,6 +1,14 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [v0.2.1] (2021-09-24)
+### Added
+- Changelog file
+- Npm publish action
+
+### Fixed
+- `watchId` and `watchPositionFn` return types
+
 ## v0.2.0 (2021-09-24)
 ### Added
 - Linting action
@@ -33,3 +41,5 @@ All notable changes to this project will be documented in this file.
 - MIT License.
 - Eslint configuration file.
 - README
+
+[v0.2.1]: https://github.com/margaridafp/google-maps-current-location/compare/v.0.2.0...v0.2.1
