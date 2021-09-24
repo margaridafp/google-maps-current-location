@@ -15,6 +15,7 @@ export default class LocationButton {
     this.options = options;
 
     const {buttonStyle} = options;
+    const translateSymbol = 'translateY(-50%) translateX(-50%)';
 
     const controlDiv = document.createElement('div');
     controlDiv.style.margin = buttonStyle?.mainMargin ?? '10px';
@@ -40,7 +41,7 @@ export default class LocationButton {
     controlOutterSymbol.style.position = 'absolute';
     controlOutterSymbol.style.top = '50%';
     controlOutterSymbol.style.left = '50%';
-    controlOutterSymbol.style.transform = 'translateY(-50%) translateX(-50%)';
+    controlOutterSymbol.style.transform = translateSymbol;
     this.controlUI.appendChild(controlOutterSymbol);
 
     this.controlInnerSymbol = document.createElement('div');
@@ -51,7 +52,7 @@ export default class LocationButton {
     this.controlInnerSymbol.style.position = 'absolute';
     this.controlInnerSymbol.style.top = '50%';
     this.controlInnerSymbol.style.left = '50%';
-    this.controlInnerSymbol.style.transform = 'translateY(-50%) translateX(-50%)';
+    this.controlInnerSymbol.style.transform = translateSymbol;
 
     this.controlUI.appendChild(this.controlInnerSymbol);
 
@@ -74,15 +75,12 @@ export default class LocationButton {
     if (enable) {
       this.controlInnerSymbol.animate([
         {
-          transform: 'scale(1)',
           opacity: '1',
         },
         {
-          transform: 'scale(1)',
           opacity: '0',
         },
         {
-          transform: 'scale(1)',
           opacity: '1',
         },
       ], {
