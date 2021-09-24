@@ -1,6 +1,11 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [v0.2.2] (2021-09-24)
+### Fixed
+- Npm publish action
+
+
 ## [v0.2.1] (2021-09-24)
 ### Added
 - Changelog file
@@ -43,3 +48,4 @@ All notable changes to this project will be documented in this file.
 - README
 
 [v0.2.1]: https://github.com/margaridafp/google-maps-current-location/compare/v.0.2.0...v0.2.1
+[v0.2.2]: https://github.com/margaridafp/google-maps-current-location/compare/v0.2.1...v0.2.2
