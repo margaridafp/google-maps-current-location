@@ -32,16 +32,22 @@
   "devDependencies": {
     "@commitlint/cli": "^17.3.0",
     "@commitlint/config-conventional": "^17.3.0",
-    "@types/googlemaps": "^3.43.3",
-    "@typescript-eslint/eslint-plugin": "^4.30.0",
-    "@typescript-eslint/parser": "^4.30.0",
-    "eslint": "^7.32.0",
+    "@types/google.maps": "^3.50.5",
+    "@typescript-eslint/eslint-plugin": "^5.45.0",
+    "@typescript-eslint/parser": "^5.45.0",
+    "eslint": "^8.28.0",
     "eslint-config-google": "^0.14.0",
-    "eslint-plugin-simple-import-sort": "^7.0.0",
-    "microbundle": "^0.13.3",
+    "eslint-plugin-simple-import-sort": "^8.0.0",
     "husky": "^8.0.2",
     "lint-staged": "^13.0.4",
-    "typescript": "^4.4.2"
+    "microbundle": "^0.15.1",
+    "typescript": "^4.9.3"
+  },
+  "resolutions": {
+    "loader-utils": "^1.4.2",
+    "minimatch": "^3.0.5",
+    "terser": "^5.14.2",
+    "nanoid": "^3.3.2"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --cache --fix"
