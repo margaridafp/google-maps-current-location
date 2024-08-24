@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [v0.3.0] (2024-08-24)
+### Changed
+- Migrate from google.map.Marker to google.map.marker.AdvancedMarkerElement
+
 ## [v0.2.3] (2021-09-24)
 ### Added
 - setError to deal with GeolocationPositionError
@@ -56,3 +60,4 @@ All notable changes to this project will be documented in this file.
 [v0.2.1]: https://github.com/margaridafp/google-maps-current-location/compare/v.0.2.0...v0.2.1
 [v0.2.2]: https://github.com/margaridafp/google-maps-current-location/compare/v0.2.1...v0.2.2
 [v0.2.3]: https://github.com/margaridafp/google-maps-current-location/compare/v0.2.2...v0.2.3
+[v0.3.0]: https://github.com/margaridafp/google-maps-current-location/compare/v0.2.3...v0.3.0
