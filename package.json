@@ -47,7 +47,8 @@
     "loader-utils": "^1.4.2",
     "minimatch": "^3.0.5",
     "terser": "^5.14.2",
-    "nanoid": "^3.3.2"
+    "nanoid": "^3.3.2",
+    "@babel/traverse": "7.25.4"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --cache --fix"
