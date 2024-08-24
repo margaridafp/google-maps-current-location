@@ -13,7 +13,6 @@ export type ButtonStyle = {
 
 export type MarkerStyle = {
     clickable?: boolean,
-    cursor?: string,
     draggable?: boolean,
     fillColor?: string,
     scale?: number,

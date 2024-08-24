@@ -85,7 +85,7 @@ Prop | Type  | Description | Default
 
 
 #### 2. markerStyle
-Configures the css of the marker displayed over the map, on the current location coordinates. To learn more about `google.maps.Marker` click [here](https://developers.google.com/maps/documentation/javascript/reference/marker#MarkerOptions).
+Configures the css of the marker displayed over the map, on the current location coordinates. To learn more about `google.maps.marker.AdvancedMarkerElement` click [here](https://developers.google.com/maps/documentation/javascript/reference/advanced-markers).
 
 <p>
     <img width="100px" height="100px" src="assets/readme/current-location-marker.png" />
@@ -94,10 +94,9 @@ Configures the css of the marker displayed over the map, on the current location
 Prop | Type | Description | Default
 ---- | ----| ----------- | -------
 `clickable`|boolean|If true, the marker receives mouse and touch events|false
-`cursor`|string|Mouse cursor type to show on hover|pointer
 `draggable`|boolean|If true, the marker can be dragged| false
 `fillColor`|string|The symbol's fill color. All CSS3 colors are supported except for extended named colors|#4A89F3
-`scale`|number|The amount by which the symbol is scaled in size|6
+`scale`|number|The width and height of the marker|12
 `strokeWeight`|number|The symbol's stroke weight|2
 `strokeColor`|string|The symbol's stroke color. All CSS3 colors are supported except for extended named colors|white
 

@@ -16,7 +16,7 @@ type Options = {
 export default class LocationMarker {
   map: google.maps.Map;
   options: Options;
-  innerCircle: google.maps.Marker;
+  innerCircle: google.maps.marker.AdvancedMarkerElement;
   outerCircle: google.maps.Circle;
 
   constructor(map: google.maps.Map, options: Options = {}) {
@@ -25,22 +25,22 @@ export default class LocationMarker {
 
     const {markerStyle} = options;
 
-    this.innerCircle = new google.maps.Marker({
+    const markerElement = document.createElement('div');
+    markerElement.style.backgroundColor = markerStyle?.fillColor ?? MARKER_DEFAULT_COLOR;
+    markerElement.style.borderRadius = '50%';
+    markerElement.style.width = `${markerStyle?.scale ?? 12}px`;
+    markerElement.style.height = `${markerStyle?.scale ?? 12}px`;
+    markerElement.style.border = `${markerStyle?.strokeWeight ?? 2}px solid ${markerStyle?.strokeColor ?? 'white'}`;
+
+    const markerOptions: google.maps.marker.AdvancedMarkerElementOptions = {
       map,
-      'clickable': markerStyle?.clickable ?? false,
-      'cursor': markerStyle?.cursor ?? 'pointer',
-      'draggable': markerStyle?.draggable ?? false,
-      'icon': {
-        'path': google.maps.SymbolPath.CIRCLE,
-        'fillColor': markerStyle?.fillColor ?? MARKER_DEFAULT_COLOR,
-        'fillOpacity': 1,
-        'scale': markerStyle?.scale ?? 6,
-        'strokeWeight': markerStyle?.strokeWeight ?? 2,
-        'strokeColor': markerStyle?.strokeColor ?? 'white',
-      },
-      'optimized': false,
-      'zIndex': 3,
-    });
+      gmpClickable: markerStyle?.clickable ?? false,
+      gmpDraggable: markerStyle?.draggable ?? false,
+      zIndex: 3,
+      content: markerElement,
+    };
+
+    this.innerCircle = new google.maps.marker.AdvancedMarkerElement(markerOptions);
 
     this.outerCircle = new google.maps.Circle({
       map,
@@ -48,7 +48,13 @@ export default class LocationMarker {
       fillOpacity: 0.1,
       strokeWeight: 0,
     });
-    this.outerCircle.bindTo('center', this.innerCircle, 'position');
+
+    this.innerCircle.addListener('position_changed', () => {
+      const position = this.innerCircle.position;
+      if (position) {
+        this.outerCircle.setCenter(position);
+      }
+    });
   }
 
   /**
@@ -59,7 +65,7 @@ export default class LocationMarker {
   update(pos: GeolocationPosition, moveToCenter = false): void {
     const latLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
 
-    this.innerCircle.setPosition(latLng);
+    this.innerCircle.position = latLng;
     if (!this.options.showAccuracyRadius) {
       this.outerCircle.setCenter(latLng);
       this.outerCircle.setRadius(pos.coords.accuracy);
@@ -74,7 +80,7 @@ export default class LocationMarker {
    * Centers map on current marker position
    */
   center():void {
-    const pos = this.innerCircle.getPosition();
+    const pos = this.innerCircle.position;
     if (pos) {
       this.map.setCenter(pos);
     }
