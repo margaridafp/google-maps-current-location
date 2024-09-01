@@ -16,14 +16,31 @@ type Options = {
 export default class LocationMarker {
   map: google.maps.Map;
   options: Options;
-  innerCircle: google.maps.marker.AdvancedMarkerElement;
-  outerCircle: google.maps.Circle;
+  innerCircle: google.maps.marker.AdvancedMarkerElement | null = null;
+  outerCircle: google.maps.Circle | null = null;
 
   constructor(map: google.maps.Map, options: Options = {}) {
     this.map = map;
     this.options = options;
 
-    const {markerStyle} = options;
+    this.initMarker();
+  }
+
+  private async loadMarkerClasses() {
+    try {
+      const {AdvancedMarkerElement} = await google.maps.importLibrary('marker') as google.maps.MarkerLibrary;
+      return {AdvancedMarkerElement};
+    } catch (error) {
+      console.warn('Dynamic import failed, falling back to static imports', error);
+      return {
+        AdvancedMarkerElement: google.maps.marker.AdvancedMarkerElement,
+      };
+    }
+  }
+
+  private async initMarker() {
+    const {AdvancedMarkerElement} = await this.loadMarkerClasses();
+    const {markerStyle} = this.options;
 
     const markerElement = document.createElement('div');
     markerElement.style.backgroundColor = markerStyle?.fillColor ?? MARKER_DEFAULT_COLOR;
@@ -33,25 +50,25 @@ export default class LocationMarker {
     markerElement.style.border = `${markerStyle?.strokeWeight ?? 2}px solid ${markerStyle?.strokeColor ?? 'white'}`;
 
     const markerOptions: google.maps.marker.AdvancedMarkerElementOptions = {
-      map,
+      map: this.map,
       gmpClickable: markerStyle?.clickable ?? false,
       gmpDraggable: markerStyle?.draggable ?? false,
       zIndex: 3,
       content: markerElement,
     };
 
-    this.innerCircle = new google.maps.marker.AdvancedMarkerElement(markerOptions);
+    this.innerCircle = new AdvancedMarkerElement(markerOptions);
 
     this.outerCircle = new google.maps.Circle({
-      map,
-      fillColor: options.markerStyle?.fillColor ?? MARKER_DEFAULT_COLOR,
+      map: this.map,
+      fillColor: this.options.markerStyle?.fillColor ?? MARKER_DEFAULT_COLOR,
       fillOpacity: 0.1,
       strokeWeight: 0,
     });
 
     this.innerCircle.addListener('position_changed', () => {
-      const position = this.innerCircle.position;
-      if (position) {
+      const position = this.innerCircle?.position;
+      if (position && this.outerCircle) {
         this.outerCircle.setCenter(position);
       }
     });
@@ -65,8 +82,10 @@ export default class LocationMarker {
   update(pos: GeolocationPosition, moveToCenter = false): void {
     const latLng = new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude);
 
-    this.innerCircle.position = latLng;
-    if (!this.options.showAccuracyRadius) {
+    if (this.innerCircle) {
+      this.innerCircle.position = latLng;
+    }
+    if (!this.options.showAccuracyRadius && this.outerCircle) {
       this.outerCircle.setCenter(latLng);
       this.outerCircle.setRadius(pos.coords.accuracy);
     }
@@ -80,7 +99,7 @@ export default class LocationMarker {
    * Centers map on current marker position
    */
   center():void {
-    const pos = this.innerCircle.position;
+    const pos = this.innerCircle?.position;
     if (pos) {
       this.map.setCenter(pos);
     }
