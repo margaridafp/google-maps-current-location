@@ -1,6 +1,10 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [v0.4.0] (2024-09-01)
+### Changed
+- Allow dynamic import of google marker
+
 ## [v0.3.0] (2024-08-24)
 ### Changed
 - Migrate from google.map.Marker to google.map.marker.AdvancedMarkerElement
@@ -61,3 +65,4 @@ All notable changes to this project will be documented in this file.
 [v0.2.2]: https://github.com/margaridafp/google-maps-current-location/compare/v0.2.1...v0.2.2
 [v0.2.3]: https://github.com/margaridafp/google-maps-current-location/compare/v0.2.2...v0.2.3
 [v0.3.0]: https://github.com/margaridafp/google-maps-current-location/compare/v0.2.3...v0.3.0
+[v0.4.0]: https://github.com/margaridafp/google-maps-current-location/compare/v0.3.0...v0.4.0
